@@ -1,0 +1,49 @@
+!<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Form Validation</title> 
+    <link rel="stylesheet" href="index.css"> 
+    <script src="script.js"></script> 
+ 
+    <!-- Bootstrap CSS --> 
+
+</head> 
+ 
+<body >
+<h2>Register</h2>
+<input type="text" placeholder="UserName" id="name"><br><br>
+<input type="email" placeholder="Email" id="email"><br><br>
+<button onclick="Signup()" >Submit</button>
+<p id=""msg></p>
+
+    <script>
+        async function Signup(){
+           const name=document.getElementById("name").value;
+           const email=document.getElementById("email").value;
+
+           try{
+              const res=await fetch("https://jsonplaceholder.typicode.com/posts",{
+                      method:"POST",
+              Headers:{
+                "Content-Type":"application/json"
+              },
+              body:JSON.stringify({
+                name:name,
+                email:email
+              })
+              
+              });
+              const data= await res.json();
+              document.getElementById("msg").innerText= "Signup Successfully";
+              console.log(data);
+            }catch(error){
+                document.getElementById("msg").innerText= "Signup Failed";
+                console.log(error);
+            }
+        }
+
+    </script>
+</body>
+</html>
