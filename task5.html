@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS Priority Test</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    p {
+      color: green; /* Internal CSS */
+    }
+  </style>
+</head>
+<body>
+  <p style="color:red;">This is a test paragraph.</p>
+</body>
+</html>
+
+p {
+  color: blue; /* External CSS */
+}
