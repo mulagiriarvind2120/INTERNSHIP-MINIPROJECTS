@@ -1,0 +1,21 @@
+import React from "react";
+
+function TodoList({ tasks, deleteTask }) {
+  return (
+    <ul style={{ listStyle: "none", padding: 0 }}>
+      {tasks.map((task, index) => (
+        <li key={index} style={{ margin: "10px 0" }}>
+          {task}
+          <button
+            onClick={() => deleteTask(index)}
+            style={{ marginLeft: "10px", color: "red" }}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default TodoList;

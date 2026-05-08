@@ -1,0 +1,30 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+let tasks = [];
+let idCounter = 1;
+
+// Get all tasks
+app.get("/tasks", (req, res) => {
+  res.json(tasks);
+});
+
+// Add a task
+app.post("/tasks", (req, res) => {
+  const newTask = { id: idCounter++, task: req.body.task };
+  tasks.push(newTask);
+  res.json(newTask);
+});
+
+// Delete a task
+app.delete("/tasks/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  tasks = tasks.filter(t => t.id !== id);
+  res.sendStatus(200);
+});
+
+app.listen(5000, () => console.log("Server running on http://localhost:5000"));
